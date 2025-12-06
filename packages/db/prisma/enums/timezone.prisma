@@ -1,0 +1,25 @@
+enum Timezone {
+  UTC_MINUS_11
+  UTC_MINUS_10
+  UTC_MINUS_9
+  UTC_MINUS_8
+  UTC_MINUS_7
+  UTC_MINUS_6
+  UTC_MINUS_5
+  UTC_MINUS_4
+  UTC_MINUS_3
+  UTC_MINUS_2
+  UTC_MINUS_1
+  UTC_0
+  UTC_1
+  UTC_2
+  UTC_3
+  UTC_4
+  UTC_5
+  UTC_6
+  UTC_7
+  UTC_8
+  UTC_9
+  UTC_10
+  UTC_11
+}

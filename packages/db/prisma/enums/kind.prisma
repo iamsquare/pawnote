@@ -1,0 +1,9 @@
+enum Kind {
+  DOG
+  CAT
+  FISH
+  BIRD
+  HAMSTER
+  EXOTIC
+  OTHER
+}

@@ -1,0 +1,13 @@
+model Vaccine {
+  id           String       @id @default(uuid())
+  name         String
+  description  String?
+  date         DateTime
+  validUntil   DateTime
+  petId        String
+  pet          Pet          @relation(fields: [petId], references: [id])
+  attachments  Attachment[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  attachmentId String?
+}

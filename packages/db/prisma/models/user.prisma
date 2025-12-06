@@ -1,0 +1,10 @@
+model User {
+  id         String     @id @default(uuid())
+  name       String?
+  email      String     @unique
+  verified   Boolean    @default(false)
+  imageUrl   String?
+  timezone   Timezone   @default(UTC_0)
+  unitSystem UnitSystem @default(METRIC)
+  pets       Pet[]
+}

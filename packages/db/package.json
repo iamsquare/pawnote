@@ -1,0 +1,42 @@
+{
+  "name": "@repo/db",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./dist/client.mjs",
+    "./*": "./dist/*.mjs",
+    "./models/*": "./dist/models/*.mjs"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "check-types": "tsdown --clean=false --write=false",
+    "build": "tsdown",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:pull": "prisma db pull",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "db:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "catalog:",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "dotenv": "catalog:",
+    "pg": "^8.16.3",
+    "tsx": "catalog:"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.6",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "prettier-plugin-prisma": "^5.0.0",
+    "prisma": "^7.1.0",
+    "tsdown": "catalog:"
+  }
+}
