@@ -1,5 +1,5 @@
 import { baseConfig } from '@repo/eslint-config/base';
-import { WARN } from '@repo/eslint-config/utils';
+import { OFF, WARN } from '@repo/eslint-config/utils';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 
@@ -18,7 +18,7 @@ export const nestConfig = defineConfig(
   {
     rules: {
       '@typescript-eslint/no-floating-promises': WARN,
-      '@typescript-eslint/no-unsafe-argument': WARN,
+      '@typescript-eslint/no-unsafe-argument': OFF,
     },
   },
 );

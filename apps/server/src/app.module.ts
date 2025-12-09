@@ -4,6 +4,7 @@ import { APP_FILTER, APP_PIPE, HttpAdapterHost } from '@nestjs/core';
 import { PrismaClientExceptionFilter, PrismaModule } from '@repo/api';
 import { ZodValidationPipe } from 'nestjs-zod';
 
+import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -16,6 +17,7 @@ import { UserModule } from './user/user.module';
       },
     }),
     UserModule,
+    AuthModule,
   ],
   providers: [
     {
@@ -24,9 +26,8 @@ import { UserModule } from './user/user.module';
     },
     {
       provide: APP_FILTER,
-      useFactory: ({ httpAdapter }: HttpAdapterHost) => {
-        return new PrismaClientExceptionFilter(httpAdapter);
-      },
+      useFactory: ({ httpAdapter }: HttpAdapterHost) =>
+        new PrismaClientExceptionFilter(httpAdapter),
       inject: [HttpAdapterHost],
     },
   ],

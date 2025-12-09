@@ -10,7 +10,7 @@ import { PrismaService } from './prisma.service';
   exports: [PrismaService],
 })
 export class PrismaModule {
-  static forRoot(options: PrismaModuleOptions = {}): DynamicModule {
+  static forRoot(options: PrismaModuleOptions): DynamicModule {
     return {
       global: options.isGlobal,
       module: PrismaModule,

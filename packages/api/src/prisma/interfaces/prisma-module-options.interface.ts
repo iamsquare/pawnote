@@ -3,7 +3,7 @@ import { type Prisma } from '@repo/db/client';
 export interface PrismaModuleOptions {
   isGlobal?: boolean;
 
-  prismaServiceOptions?: PrismaServiceOptions;
+  prismaServiceOptions: PrismaServiceOptions;
 }
 
 export type PrismaServiceOptions = Pick<

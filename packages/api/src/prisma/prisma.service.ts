@@ -1,4 +1,4 @@
-import { Inject, Injectable, OnModuleDestroy, OnModuleInit, Optional } from '@nestjs/common';
+import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@repo/db/client';
 
@@ -9,7 +9,6 @@ import { PRISMA_SERVICE_OPTIONS } from './prisma.constants';
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   constructor(
     @Inject(PRISMA_SERVICE_OPTIONS)
-    @Optional()
     private readonly prismaServiceOptions: PrismaServiceOptions,
   ) {
     const { connectionString, ...rest } = prismaServiceOptions ?? {};

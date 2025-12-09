@@ -4,7 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["db:generate", "^build"],
-      "env": ["PORT", "NODE_ENV"],
+      "env": ["PORT", "NODE_ENV", "JWT_SECRET"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"]
     },
     "lint": {
