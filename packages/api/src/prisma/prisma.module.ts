@@ -1,25 +1,24 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 
-import { PrismaModuleOptions } from './interfaces';
+import { PrismaServiceOptions } from './interfaces';
 import { PRISMA_SERVICE_OPTIONS } from './prisma.constants';
 import { PrismaService } from './prisma.service';
 
 @Global()
-@Module({
-  providers: [PrismaService],
-  exports: [PrismaService],
-})
+@Module({})
 export class PrismaModule {
-  static forRoot(options: PrismaModuleOptions): DynamicModule {
+  static forRoot(options: PrismaServiceOptions): DynamicModule {
     return {
-      global: options.isGlobal,
+      global: true,
       module: PrismaModule,
       providers: [
         {
           provide: PRISMA_SERVICE_OPTIONS,
-          useValue: options.prismaServiceOptions,
+          useValue: options,
         },
+        PrismaService,
       ],
+      exports: [PrismaService],
     };
   }
 }

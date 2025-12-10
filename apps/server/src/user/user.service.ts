@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService, UserCreateDto, UserFindByEmailDto } from '@repo/api';
-import { hash } from 'bcrypt';
-import { merge, omit, prop } from 'remeda';
+import { PrismaService, UserResponseDto, UserUpdateDto } from '@repo/api';
+import { merge } from 'remeda';
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  findOne(userFindByEmailDto: UserFindByEmailDto) {
-    return this.prisma.user.findUnique({
-      where: userFindByEmailDto,
-      include: { pets: true },
-    });
+  async findOne(id: string): Promise<UserResponseDto> {
+    const [user, petsCount] = await this.prisma.$transaction([
+      this.prisma.user.findUniqueOrThrow({
+        where: { id },
+      }),
+      this.prisma.user.count({
+        where: { id },
+      }),
+    ]);
+
+    return merge(user, { petsCount });
   }
 
-  async create(createUserDto: UserCreateDto) {
-    const hashedPassword = await hash(prop(createUserDto, 'password'), 10);
-
-    return this.prisma.user.create({
-      data: merge(omit(createUserDto, ['password']), {
-        password: hashedPassword,
+  async update(
+    id: string,
+    updateUserDto: UserUpdateDto,
+  ): Promise<UserResponseDto> {
+    const [user, petsCount] = await this.prisma.$transaction([
+      this.prisma.user.update({
+        where: { id },
+        data: updateUserDto,
       }),
-    });
+      this.prisma.user.count({
+        where: { id },
+      }),
+    ]);
+
+    return merge(user, { petsCount });
   }
 }

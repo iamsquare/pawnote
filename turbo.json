@@ -3,8 +3,8 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["db:generate", "^build"],
-      "env": ["PORT", "NODE_ENV", "JWT_SECRET"],
+      "dependsOn": ["^db:generate", "^build"],
+      "env": ["PORT", "NODE_ENV", "JWT_SECRET", "BETTER_AUTH_URL", "BETTER_AUTH_SECRET"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"]
     },
     "lint": {
@@ -15,7 +15,7 @@
       "cache": false
     },
     "server#dev": {
-      "dependsOn": ["db:generate", "@repo/api#build"],
+      "dependsOn": ["^db:generate", "@repo/api#build"],
       "cache": false,
       "persistent": true
     },
@@ -32,6 +32,7 @@
       "cache": false
     },
     "db:push": {
+      "dependsOn": ["^db:generate"],
       "cache": false,
       "interactive": true
     },

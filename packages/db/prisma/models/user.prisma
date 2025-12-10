@@ -1,11 +1,15 @@
 model User {
-  id         String     @id @default(uuid())
-  email      String     @unique
-  password   String
-  name       String?
-  imageUrl   String?
-  verified   Boolean    @default(false)
-  timezone   Timezone   @default(UTC_0)
-  unitSystem UnitSystem @default(METRIC)
-  pets       Pet[]
+  id            String     @id @default(uuid())
+  name          String
+  email         String     @unique
+  emailVerified Boolean    @default(false)
+  image         String?
+  timezone      Timezone   @default(UTC_0)
+  unitSystem    UnitSystem @default(METRIC)
+  pets          Pet[]
+  sessions      Session[]
+  accounts      Account[]
+  toDelete      Boolean    @default(false)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
